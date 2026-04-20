@@ -4,55 +4,47 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dr. Emily Chen — Little Stars Pediatric Care</title>
-
-    <!-- Nunito (playful rounded body) + Fraunces (warm editorial display) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Dr. Rukayaa – Mother & Child Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;0,900;1,600;1,700&family=Nunito:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet" />
-
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <style>
-        /* ============================================================
-       COLOR PALETTE
-       ============================================================
-       --cream      : warm page background
-       --coral      : primary accent (warm, friendly)
-       --sky        : secondary accent (calm, trustworthy)
-       --mint       : tertiary (health, fresh)
-       --sunshine   : highlight pops
-       --deep       : dark text
-       --muted      : body copy grey
-    */
+        /* ══════════════════════════════════════════
+   CSS VARIABLES
+══════════════════════════════════════════ */
         :root {
-            --cream: #FFF8F0;
-            --cream-deep: #FFF0E0;
-            --coral: #FF6B6B;
-            --coral-soft: #FF8E8E;
-            --coral-pale: #FFE8E8;
-            --sky: #4CAFF5;
-            --sky-pale: #E6F5FF;
-            --mint: #3ECFAE;
-            --mint-pale: #E4FBF5;
-            --sunshine: #FFD166;
-            --sun-pale: #FFF6DC;
-            --deep: #1E1B2E;
-            --dark-text: #2D2A3E;
-            --muted: #7C7A8C;
-            --border: rgba(0, 0, 0, 0.07);
+            --blue: #2A7FFF;
+            --blue-dk: #1760CC;
+            --blue-lt: #E8F1FF;
+            --pink: #FF7A9C;
+            --pink-lt: #FFF0F4;
+            --pink-dk: #E05578;
+            --teal: #00C9A7;
+            --teal-lt: #E0FAF5;
+            --bg: #F8FBFF;
+            --bg2: #F0F5FF;
+            --text: #1A202C;
+            --muted: #5A6A7E;
+            --light: #8FA3BE;
             --white: #FFFFFF;
-
-            --font-head: 'Fraunces', Georgia, serif;
-            --font-body: 'Nunito', sans-serif;
-            --max-w: 1180px;
-            --radius: 24px;
-            --radius-lg: 40px;
+            --border: rgba(42, 127, 255, .1);
+            --sh-sm: 0 2px 16px rgba(42, 127, 255, .08);
+            --sh-md: 0 8px 40px rgba(42, 127, 255, .12);
+            --sh-lg: 0 24px 80px rgba(42, 127, 255, .15);
+            --sh-pink: 0 12px 40px rgba(255, 122, 156, .25);
+            --r: 18px;
+            --rl: 28px;
+            --fh: 'Cormorant Garamond', serif;
+            --fb: 'Outfit', sans-serif;
+            --nav: 76px;
+            --ease: .4s cubic-bezier(.4, 0, .2, 1);
         }
 
-        /* ============================================================
-       RESET & BASE
-       ============================================================ */
+        /* ══════════════════════════════════════════
+   RESET
+══════════════════════════════════════════ */
         *,
         *::before,
         *::after {
@@ -63,1842 +55,2116 @@
 
         html {
             scroll-behavior: smooth;
+            font-size: 16px;
         }
 
         body {
-            font-family: var(--font-body);
-            background: var(--cream);
-            color: var(--dark-text);
+            font-family: var(--fb);
+            background: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
             line-height: 1.65;
         }
 
         a {
-            color: inherit;
             text-decoration: none;
+            color: inherit;
         }
 
-        img {
-            display: block;
-            max-width: 100%;
+        ul {
+            list-style: none;
         }
 
-        /* ============================================================
-       BUBBLY BACKGROUND SHAPES (decorative, CSS only)
-       ============================================================ */
-        .bg-shapes {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        /* Large soft circles that slowly drift */
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.22;
-            animation: shapeDrift 20s ease-in-out infinite alternate;
-        }
-
-        .shape-1 {
-            width: 600px;
-            height: 600px;
-            background: var(--coral);
-            top: -200px;
-            right: -150px;
-            filter: blur(90px);
-            animation-duration: 22s;
-        }
-
-        .shape-2 {
-            width: 500px;
-            height: 500px;
-            background: var(--sky);
-            bottom: -150px;
-            left: -100px;
-            filter: blur(80px);
-            animation-duration: 26s;
-            animation-delay: -8s;
-        }
-
-        .shape-3 {
-            width: 350px;
-            height: 350px;
-            background: var(--mint);
-            top: 45%;
-            left: 40%;
-            filter: blur(70px);
-            animation-duration: 18s;
-            animation-delay: -5s;
-        }
-
-        .shape-4 {
-            width: 280px;
-            height: 280px;
-            background: var(--sunshine);
-            top: 20%;
-            left: 10%;
-            filter: blur(60px);
-            opacity: 0.15;
-            animation-duration: 24s;
-            animation-delay: -12s;
-        }
-
-        @keyframes shapeDrift {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(50px, 35px) scale(1.1);
-            }
-        }
-
-        /* Scattered tiny dots pattern */
-        .dots-bg {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.4;
-            background-image: radial-gradient(circle, #FFD166 1px, transparent 1px),
-                radial-gradient(circle, #4CAFF5 1px, transparent 1px);
-            background-size: 60px 60px, 90px 90px;
-            background-position: 0 0, 30px 30px;
-        }
-
-        /* ============================================================
-       UTILITY
-       ============================================================ */
-        .container {
-            max-width: var(--max-w);
+        .wrap {
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
+            padding: 0 28px;
         }
 
-        /* Reveal on scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(36px);
-            transition: opacity 0.65s cubic-bezier(.22, .61, .36, 1), transform 0.65s cubic-bezier(.22, .61, .36, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Stagger children */
-        .stagger>*:nth-child(1) {
-            transition-delay: 0.05s;
-        }
-
-        .stagger>*:nth-child(2) {
-            transition-delay: 0.12s;
-        }
-
-        .stagger>*:nth-child(3) {
-            transition-delay: 0.20s;
-        }
-
-        .stagger>*:nth-child(4) {
-            transition-delay: 0.28s;
-        }
-
-        .stagger>*:nth-child(5) {
-            transition-delay: 0.36s;
-        }
-
-        .stagger>*:nth-child(6) {
-            transition-delay: 0.44s;
-        }
-
-        /* Pill badge */
-        .badge {
-            display: inline-flex;
+        /* ══════════════════════════════════════════
+   LOADER
+══════════════════════════════════════════ */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 1.1rem;
-            border-radius: 100px;
-            background: var(--coral-pale);
-            color: var(--coral);
-            font-size: 0.78rem;
-            font-weight: 800;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            border: 1.5px solid rgba(255, 107, 107, 0.25);
+            justify-content: center;
+            gap: 18px;
+            z-index: 9999;
+            transition: opacity .7s ease, visibility .7s ease;
         }
 
-        .badge .dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--coral);
-            animation: bounceDot 1.5s ease-in-out infinite;
+        #loader.gone {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
-        @keyframes bounceDot {
+        .ldr-heart {
+            width: 52px;
+            height: 52px;
+            position: relative;
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+
+        .ldr-heart::before,
+        .ldr-heart::after {
+            content: '';
+            position: absolute;
+            width: 28px;
+            height: 44px;
+            background: var(--pink);
+            border-radius: 28px 28px 0 0;
+        }
+
+        .ldr-heart::before {
+            left: 26px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .ldr-heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartbeat {
 
             0%,
             100% {
                 transform: scale(1);
             }
 
-            50% {
-                transform: scale(1.7);
+            14% {
+                transform: scale(1.25);
+            }
+
+            28% {
+                transform: scale(1);
+            }
+
+            42% {
+                transform: scale(1.15);
+            }
+
+            56% {
+                transform: scale(1);
             }
         }
 
-        /* Primary button */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.55rem;
-            background: var(--coral);
-            color: var(--white);
-            font-family: var(--font-body);
-            font-weight: 800;
-            font-size: 0.95rem;
-            padding: 0.9rem 2rem;
-            border-radius: 100px;
-            border: none;
-            cursor: pointer;
-            transition: background 0.25s, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 8px 28px rgba(255, 107, 107, 0.35);
+        .ldr-name {
+            font-family: var(--fh);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--blue);
+            letter-spacing: -.01em;
+            animation: fadePulse 1s ease-in-out infinite;
         }
 
-        .btn-primary:hover {
-            background: var(--coral-soft);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 14px 40px rgba(255, 107, 107, 0.45);
+        @keyframes fadePulse {
+
+            0%,
+            100% {
+                opacity: .5
+            }
+
+            50% {
+                opacity: 1
+            }
         }
 
-        /* Sky button */
-        .btn-sky {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.55rem;
-            background: var(--sky-pale);
-            color: var(--sky);
-            font-family: var(--font-body);
-            font-weight: 800;
-            font-size: 0.95rem;
-            padding: 0.9rem 2rem;
-            border-radius: 100px;
-            border: 2px solid rgba(76, 175, 245, 0.25);
-            cursor: pointer;
-            transition: background 0.25s, transform 0.2s;
-        }
-
-        .btn-sky:hover {
-            background: #d3ecfd;
-            transform: translateY(-3px);
-        }
-
-        /* Ghost outline */
-        .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: transparent;
-            color: var(--coral);
-            font-family: var(--font-body);
-            font-weight: 800;
-            font-size: 0.9rem;
-            padding: 0.75rem 1.6rem;
-            border-radius: 100px;
-            border: 2px solid var(--coral);
-            cursor: pointer;
-            transition: background 0.25s, transform 0.2s;
-        }
-
-        .btn-ghost:hover {
-            background: var(--coral-pale);
-            transform: translateY(-2px);
-        }
-
-        /* Section label */
-        .sec-label {
-            display: inline-block;
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--coral);
-            background: var(--coral-pale);
-            padding: 0.28rem 0.9rem;
-            border-radius: 100px;
-            margin-bottom: 0.85rem;
-        }
-
-        /* Section title */
-        .sec-title {
-            font-family: var(--font-head);
-            font-size: clamp(1.9rem, 3.8vw, 2.9rem);
-            font-weight: 700;
-            line-height: 1.18;
-            color: var(--deep);
-        }
-
-        .sec-title em {
-            font-style: italic;
-            color: var(--coral);
-        }
-
-        .sec-title .sky {
-            color: var(--sky);
-        }
-
-        /* ============================================================
-       NAVIGATION
-       ============================================================ */
-        nav {
+        /* ══════════════════════════════════════════
+   NAVBAR
+══════════════════════════════════════════ */
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
-            padding: 1.1rem 0;
-            transition: background 0.4s, box-shadow 0.4s;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 248, 240, 0.9);
-            backdrop-filter: blur(16px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
-        }
-
-        .nav-inner {
+            height: var(--nav);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 0 44px;
+            background: rgba(248, 251, 255, .92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: box-shadow var(--ease);
         }
 
-        /* Logo */
+        .nav.scr {
+            box-shadow: var(--sh-md);
+        }
+
         .nav-logo {
+            font-family: var(--fh);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--blue);
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 9px;
+            letter-spacing: -.02em;
         }
 
-        .logo-icon {
-            width: 38px;
-            height: 38px;
-            background: var(--coral);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--pink);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
             flex-shrink: 0;
         }
 
-        .logo-text {
-            font-family: var(--font-head);
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--deep);
-        }
+        @keyframes pulse-dot {
 
-        .logo-text span {
-            color: var(--coral);
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 122, 156, .6);
+            }
+
+            50% {
+                box-shadow: 0 0 0 7px rgba(255, 122, 156, 0);
+            }
         }
 
         .nav-links {
             display: flex;
-            align-items: center;
-            gap: 2.2rem;
-            list-style: none;
+            gap: 34px;
         }
 
         .nav-links a {
-            font-size: 0.9rem;
-            font-weight: 700;
+            font-size: .88rem;
+            font-weight: 500;
             color: var(--muted);
-            transition: color 0.2s;
+            position: relative;
+            transition: color var(--ease);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--pink), var(--blue));
+            border-radius: 2px;
+            transition: width var(--ease);
         }
 
         .nav-links a:hover {
-            color: var(--coral);
+            color: var(--text);
         }
 
-        .nav-book {
-            background: var(--coral);
-            color: var(--white) !important;
-            padding: 0.55rem 1.4rem;
-            border-radius: 100px;
-            font-weight: 800 !important;
-            font-size: 0.85rem !important;
-            transition: background 0.25s, transform 0.2s !important;
-            box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
-        .nav-book:hover {
-            background: var(--coral-soft) !important;
-            color: var(--white) !important;
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--pink), var(--pink-dk));
+            padding: 11px 24px;
+            border-radius: 50px;
+            box-shadow: var(--sh-pink);
+            transition: all var(--ease);
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
             transform: translateY(-2px);
+            box-shadow: 0 16px 48px rgba(255, 122, 156, .35);
         }
 
-        .hamburger {
+        .burger {
             display: none;
             flex-direction: column;
             gap: 5px;
+            background: none;
+            border: none;
             cursor: pointer;
             padding: 4px;
-            flex-shrink: 0;
         }
 
-        .hamburger span {
+        .burger span {
             display: block;
             width: 24px;
-            height: 2.5px;
-            background: var(--deep);
+            height: 2px;
+            background: var(--text);
             border-radius: 2px;
-            transition: 0.3s;
+            transition: all var(--ease);
         }
 
-        /* Mobile Navigation Menu */
-        .mobile-nav {
+        .mob-menu {
             display: none;
             position: fixed;
-            top: 68px;
+            top: var(--nav);
             left: 0;
             right: 0;
-            background: rgba(255, 248, 240, 0.97);
-            backdrop-filter: blur(16px);
-            padding: 1.5rem 2rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            z-index: 99;
+            background: var(--white);
             flex-direction: column;
-            gap: 1.2rem;
+            padding: 24px 28px;
+            gap: 16px;
             border-bottom: 1px solid var(--border);
+            box-shadow: var(--sh-md);
+            z-index: 998;
         }
 
-        .mobile-nav.open {
+        .mob-menu.open {
             display: flex;
         }
 
-        .mobile-nav a {
-            font-size: 0.95rem;
-            font-weight: 700;
+        .mob-menu a {
+            font-size: 1rem;
+            font-weight: 500;
             color: var(--muted);
-            transition: color 0.2s;
-            padding: 0.4rem 0;
-            border-bottom: 1px solid var(--border);
+            padding: 9px 0;
+            border-bottom: 1px solid var(--bg2);
         }
 
-        .mobile-nav a:last-child {
-            border-bottom: none;
-        }
-
-        .mobile-nav a:hover {
-            color: var(--coral);
-        }
-
-        .mobile-nav .nav-book {
+        .mob-menu .mob-cta {
+            background: linear-gradient(135deg, var(--pink), var(--pink-dk));
+            color: var(--white);
             text-align: center;
-            display: block;
-            padding: 0.75rem 1.4rem !important;
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            margin-top: 6px;
         }
 
-        /* ============================================================
-       HERO
-       ============================================================ */
+        /* ══════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .75s ease, transform .75s ease;
+        }
+
+        .reveal.right {
+            transform: translateX(40px);
+        }
+
+        .reveal.left {
+            transform: translateX(-40px);
+        }
+
+        .reveal.vis {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        .d1 {
+            transition-delay: .1s
+        }
+
+        .d2 {
+            transition-delay: .22s
+        }
+
+        .d3 {
+            transition-delay: .34s
+        }
+
+        .d4 {
+            transition-delay: .46s
+        }
+
+        /* ══════════════════════════════════════════
+   SHARED TAGS / LABELS
+══════════════════════════════════════════ */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: .72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .13em;
+            padding: 7px 17px;
+            border-radius: 50px;
+        }
+
+        .tag-pink {
+            color: var(--pink-dk);
+            background: var(--pink-lt);
+        }
+
+        .tag-blue {
+            color: var(--blue);
+            background: var(--blue-lt);
+        }
+
+        .tag-teal {
+            color: var(--teal);
+            background: var(--teal-lt);
+        }
+
+        .sec-title {
+            font-family: var(--fh);
+            font-size: clamp(2rem, 4.5vw, 3.1rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -.03em;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .sec-title em {
+            font-style: italic;
+            color: var(--pink);
+        }
+
+        .sec-sub {
+            font-size: 1.02rem;
+            color: var(--muted);
+            line-height: 1.75;
+            max-width: 520px;
+        }
+
+        /* ══════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: var(--fb);
+            font-size: .95rem;
+            font-weight: 600;
+            padding: 15px 32px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: none;
+            transition: all var(--ease);
+            white-space: nowrap;
+        }
+
+        .btn-pink {
+            background: linear-gradient(135deg, var(--pink), var(--pink-dk));
+            color: var(--white);
+            box-shadow: 0 6px 28px rgba(255, 122, 156, .38);
+        }
+
+        .btn-pink:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(255, 122, 156, .5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--blue);
+            border: 2px solid rgba(42, 127, 255, .3);
+        }
+
+        .btn-outline:hover {
+            background: var(--blue-lt);
+            border-color: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-blue {
+            background: var(--blue);
+            color: var(--white);
+            box-shadow: 0 6px 28px rgba(42, 127, 255, .35);
+        }
+
+        .btn-blue:hover {
+            background: var(--blue-dk);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(42, 127, 255, .45);
+        }
+
+        /* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
         .hero {
             min-height: 100vh;
+            padding: calc(var(--nav) + 90px) 44px 90px;
             display: flex;
             align-items: center;
-            padding: 8rem 0 5rem;
+            justify-content: center;
+            gap: 64px;
+            position: relative;
+            overflow: hidden;
+            max-width: 1280px;
+            margin: 0 auto;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 4rem;
-            align-items: center;
+        /* organic background shapes */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 680px;
+            height: 680px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 122, 156, .13) 0%, transparent 70%);
+            top: -160px;
+            right: -120px;
+            animation: driftBig 14s ease-in-out infinite alternate;
+            pointer-events: none;
         }
 
-        /* Headline */
-        .hero-badge {
-            margin-bottom: 1.4rem;
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(42, 127, 255, .1) 0%, transparent 70%);
+            bottom: -160px;
+            left: -100px;
+            animation: driftBig 10s ease-in-out infinite alternate-reverse;
+            pointer-events: none;
+        }
+
+        @keyframes driftBig {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(24px, 18px) scale(1.06);
+            }
+        }
+
+        /* decorative circles */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 201, 167, .12), rgba(42, 127, 255, .08));
+            animation: floatOrb 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 180px;
+            height: 180px;
+            top: 18%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 90px;
+            height: 90px;
+            top: 70%;
+            left: 18%;
+            animation-delay: 1.5s;
+        }
+
+        .orb-3 {
+            width: 60px;
+            height: 60px;
+            top: 30%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes floatOrb {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-16px) rotate(6deg);
+            }
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 580px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            margin-bottom: 24px;
+            animation: slideUp .8s .3s both;
         }
 
         .hero-title {
-            font-family: var(--font-head);
-            font-size: clamp(2.4rem, 5.5vw, 4.4rem);
-            font-weight: 900;
-            line-height: 1.05;
-            color: var(--deep);
-            margin-bottom: 1.4rem;
+            font-family: var(--fh);
+            font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+            font-weight: 700;
+            line-height: 1.07;
+            letter-spacing: -.04em;
+            color: var(--text);
+            margin-bottom: 24px;
+            animation: slideUp .9s .5s both;
         }
 
-        .hero-title .coral {
-            color: var(--coral);
-        }
-
-        .hero-title .wavy {
+        .hero-title .hl {
+            color: var(--pink);
+            font-style: italic;
             position: relative;
             display: inline-block;
         }
 
-        /* Wavy underline on key word */
-        .hero-title .wavy::after {
+        .hero-title .hl::after {
             content: '';
             position: absolute;
-            bottom: -6px;
+            bottom: 6px;
             left: 0;
             right: 0;
-            height: 6px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12'%3E%3Cpath d='M0,6 Q15,0 30,6 Q45,12 60,6 Q75,0 90,6 Q105,12 120,6' stroke='%23FF6B6B' stroke-width='3' fill='none'/%3E%3C/svg%3E") repeat-x center / 120px 12px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pink), transparent);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: lineGrow .9s 1.5s forwards;
         }
 
-        .hero-desc {
-            font-size: 1rem;
+        @keyframes lineGrow {
+            to {
+                transform: scaleX(1)
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
             color: var(--muted);
-            max-width: 460px;
-            line-height: 1.8;
-            margin-bottom: 2.2rem;
+            line-height: 1.75;
+            margin-bottom: 38px;
+            animation: slideUp .9s .7s both;
         }
 
         .hero-actions {
             display: flex;
-            gap: 1rem;
+            gap: 14px;
             flex-wrap: wrap;
-            margin-bottom: 3rem;
+            margin-bottom: 52px;
+            animation: slideUp .9s .9s both;
         }
 
-        /* Trust row */
-        .trust-row {
+        /* trust badges */
+        .hero-trust {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 24px;
+            animation: slideUp .9s 1.1s both;
             flex-wrap: wrap;
         }
 
-        .trust-avatars {
+        .trust-item {
             display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .82rem;
+            color: var(--muted);
+            font-weight: 500;
         }
 
-        .trust-avatars .av {
+        .trust-ico {
             width: 36px;
             height: 36px;
-            border-radius: 50%;
-            border: 2.5px solid var(--white);
-            background: var(--coral-pale);
+            background: var(--white);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            margin-left: -10px;
-            overflow: hidden;
+            font-size: 1.1rem;
+            box-shadow: var(--sh-sm);
+            flex-shrink: 0;
         }
 
-        .trust-avatars .av:first-child {
-            margin-left: 0;
-        }
-
-        .trust-avatars .av img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .trust-text {
-            font-size: 0.82rem;
-            color: var(--muted);
-            font-weight: 600;
-        }
-
-        .trust-text strong {
-            display: block;
-            color: var(--deep);
-            font-size: 0.88rem;
-        }
-
-        /* ============================================================
-       HERO VISUAL — right side
-       ============================================================ */
+        /* Doctor visual */
         .hero-visual {
-            position: relative;
+            flex: 1;
             display: flex;
             justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Blob-shaped photo frame */
-        .blob-frame {
+        .doc-visual-wrap {
             position: relative;
             width: 380px;
-            height: 440px;
-            /* Organic blob shape using clip-path */
-            clip-path: ellipse(46% 50% at 50% 50%);
-            border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
-            overflow: hidden;
-            border: 4px solid var(--white);
-            box-shadow: 0 30px 80px rgba(255, 107, 107, 0.18), 0 0 0 8px var(--coral-pale);
-            animation: blobMorph 8s ease-in-out infinite;
         }
 
-        @keyframes blobMorph {
+        .doc-img-frame {
+            width: 340px;
+            height: 440px;
+            background: linear-gradient(145deg, var(--pink-lt) 0%, var(--blue-lt) 100%);
+            border-radius: 160px 160px 120px 120px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 32px 80px rgba(255, 122, 156, .22), 0 8px 32px rgba(42, 127, 255, .1);
+            position: relative;
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
 
             0%,
             100% {
-                border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
-            }
-
-            25% {
-                border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
+                transform: translateY(0)
             }
 
             50% {
-                border-radius: 45% 55% 60% 40% / 45% 55% 45% 55%;
-            }
-
-            75% {
-                border-radius: 55% 45% 50% 50% / 60% 40% 60% 40%;
+                transform: translateY(-12px)
             }
         }
 
-        .blob-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-        }
-
-        /* Decorative circles around photo */
-        .deco-ring {
+        .doc-img-frame::before {
+            content: '';
             position: absolute;
-            border-radius: 50%;
-            border: 2px dashed;
-            pointer-events: none;
+            inset: 0;
+            background: radial-gradient(ellipse at 60% 20%, rgba(255, 122, 156, .18) 0%, transparent 60%);
         }
 
-        .deco-ring-1 {
-            width: 480px;
-            height: 480px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-color: rgba(255, 107, 107, 0.18);
-            animation: spinSlow 30s linear infinite;
+        .doc-placeholder {
+            font-size: 8rem;
+            line-height: 1;
+            margin-bottom: 0;
+            filter: drop-shadow(0 8px 20px rgba(255, 122, 156, .25));
+            position: relative;
+            z-index: 1;
         }
 
-        .deco-ring-2 {
-            width: 540px;
-            height: 540px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-color: rgba(76, 175, 245, 0.12);
-            animation: spinSlow 40s linear infinite reverse;
-        }
-
-        @keyframes spinSlow {
-            from {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-
-            to {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
-
-        /* Floating emoji / stat cards */
+        /* Floating cards */
         .float-card {
             position: absolute;
             background: var(--white);
-            border-radius: 18px;
-            padding: 0.75rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-            z-index: 3;
+            border-radius: var(--r);
+            padding: 14px 18px;
+            box-shadow: var(--sh-md);
+            border: 1px solid var(--border);
+            font-size: .8rem;
+            white-space: nowrap;
         }
 
-        .float-card.top-left {
-            top: 20px;
-            left: -50px;
-            animation: floatY 4s ease-in-out infinite alternate;
+        .fc-1 {
+            top: 30px;
+            left: -44px;
+            color: var(--text);
+            animation: fc1 4.5s ease-in-out infinite;
         }
 
-        .float-card.bottom-right {
-            bottom: 60px;
-            right: -40px;
-            animation: floatY 5s ease-in-out infinite alternate-reverse;
+        .fc-2 {
+            bottom: 80px;
+            right: -36px;
+            animation: fc2 4s ease-in-out 1s infinite;
         }
 
-        .float-card.bottom-left {
-            bottom: -20px;
-            left: 10px;
-            animation: floatY 4.5s ease-in-out infinite alternate;
-        }
-
-        @keyframes floatY {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-14px);
-            }
-        }
-
-        .fc-emoji {
-            font-size: 1.4rem;
-        }
-
-        .fc-text {
-            font-size: 0.75rem;
-            line-height: 1.3;
-            color: var(--muted);
-        }
-
-        .fc-text strong {
+        .fc-strong {
+            font-weight: 700;
+            color: var(--blue);
+            font-size: 1rem;
             display: block;
-            font-size: 0.9rem;
-            color: var(--deep);
-            font-weight: 800;
         }
 
-        /* Small floating bubbles */
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: floatBubble 6s ease-in-out infinite;
+        .fc-label {
+            color: var(--muted);
+            font-size: .72rem;
         }
 
-        .b1 {
-            width: 18px;
-            height: 18px;
-            background: var(--sunshine);
-            top: 80px;
-            right: 20px;
-            animation-delay: 0s;
+        .fc-1-icon,
+        .fc-2-icon {
+            font-size: 1.3rem;
+            margin-bottom: 2px;
+            display: block;
         }
 
-        .b2 {
-            width: 12px;
-            height: 12px;
-            background: var(--mint);
-            bottom: 160px;
-            left: -20px;
-            animation-delay: -2s;
-        }
-
-        .b3 {
-            width: 22px;
-            height: 22px;
-            background: var(--sky);
-            top: 200px;
-            left: -40px;
-            opacity: 0.6;
-            animation-delay: -4s;
-        }
-
-        @keyframes floatBubble {
+        @keyframes fc1 {
 
             0%,
             100% {
-                transform: translateY(0) rotate(0);
+                transform: translateY(0) rotate(-2deg)
             }
 
             50% {
-                transform: translateY(-20px) rotate(180deg);
+                transform: translateY(-7px) rotate(1deg)
             }
         }
 
-        /* ============================================================
-       AGE BANDS / WHO WE SEE
-       ============================================================ */
-        .age-bands {
-            padding: 2rem 0 5rem;
+        @keyframes fc2 {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(2deg)
+            }
+
+            50% {
+                transform: translateY(-9px) rotate(-1deg)
+            }
         }
 
-        .age-row {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .age-pill {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: var(--white);
-            border: 1.5px solid var(--border);
-            border-radius: 100px;
-            padding: 0.65rem 1.4rem;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--dark-text);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .age-pill:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        }
-
-        .age-pill .ep {
-            font-size: 1.2rem;
-        }
-
-        /* ============================================================
-       SERVICES
-       ============================================================ */
-        .services {
-            padding: 5rem 0;
-        }
-
-        .services-top {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            margin-bottom: 3rem;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-        }
-
-        /* Service card */
-        .svc-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 2rem;
-            border: 1.5px solid var(--border);
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-            cursor: default;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Colored top stripe */
-        .svc-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            border-radius: 24px 24px 0 0;
-        }
-
-        .svc-card.coral::before {
-            background: var(--coral);
-        }
-
-        .svc-card.sky::before {
-            background: var(--sky);
-        }
-
-        .svc-card.mint::before {
-            background: var(--mint);
-        }
-
-        .svc-card.sun::before {
-            background: var(--sunshine);
-        }
-
-        .svc-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.09);
-        }
-
-        .svc-card.coral:hover {
-            border-color: rgba(255, 107, 107, 0.3);
-        }
-
-        .svc-card.sky:hover {
-            border-color: rgba(76, 175, 245, 0.3);
-        }
-
-        .svc-card.mint:hover {
-            border-color: rgba(62, 207, 174, 0.3);
-        }
-
-        .svc-card.sun:hover {
-            border-color: rgba(255, 209, 102, 0.4);
-        }
-
-        .svc-icon {
-            width: 54px;
-            height: 54px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .svc-card.coral .svc-icon {
-            background: var(--coral-pale);
-        }
-
-        .svc-card.sky .svc-icon {
-            background: var(--sky-pale);
-        }
-
-        .svc-card.mint .svc-icon {
-            background: var(--mint-pale);
-        }
-
-        .svc-card.sun .svc-icon {
-            background: var(--sun-pale);
-        }
-
-        .svc-card h3 {
-            font-family: var(--font-head);
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.6rem;
-            color: var(--deep);
-        }
-
-        .svc-card p {
-            font-size: 0.87rem;
-            color: var(--muted);
-            line-height: 1.7;
-        }
-
-        /* ============================================================
-       ABOUT
-       ============================================================ */
+        /* ══════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════ */
         .about {
-            padding: 6rem 0;
+            padding: 110px 0;
+            background: var(--white);
         }
 
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            gap: 72px;
             align-items: center;
         }
 
-        /* Right: visual */
-        .about-visual {
+        .about-img-side {
             position: relative;
-            height: 520px;
         }
 
-        .abt-main {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 75%;
-            height: 82%;
-            border-radius: 40% 30% 30% 40% / 40% 30% 40% 30%;
+        .about-img-bg {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(160deg, var(--pink-lt) 0%, var(--blue-lt) 60%, var(--teal-lt) 100%);
+            border-radius: 120px 40px 120px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9rem;
+            box-shadow: var(--sh-lg);
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
-            animation: gentleMorph 10s ease-in-out infinite;
+            transition: transform var(--ease);
         }
 
-        @keyframes gentleMorph {
+        .about-img-bg:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+
+        .about-img-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 40% 30%, rgba(255, 122, 156, .15) 0%, transparent 55%);
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dk));
+            color: var(--white);
+            border-radius: var(--r);
+            padding: 20px 22px;
+            text-align: center;
+            box-shadow: var(--sh-md);
+        }
+
+        .about-badge strong {
+            display: block;
+            font-family: var(--fh);
+            font-size: 2.4rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .about-badge span {
+            font-size: .78rem;
+            opacity: .85;
+        }
+
+        .about-text-side {}
+
+        .about-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 28px 0;
+        }
+
+        .pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .84rem;
+            font-weight: 500;
+            color: var(--text);
+            background: var(--bg);
+            padding: 10px 18px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            transition: all var(--ease);
+        }
+
+        .pill:hover {
+            background: var(--pink-lt);
+            border-color: rgba(255, 122, 156, .3);
+            transform: translateY(-2px);
+        }
+
+        .pill-ico {
+            font-size: 1.1rem;
+        }
+
+        .about-p {
+            font-size: .97rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* ══════════════════════════════════════════
+   SERVICES
+══════════════════════════════════════════ */
+        .services {
+            padding: 110px 0;
+            background: var(--bg);
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .services-header .sec-sub {
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--rl);
+            padding: 36px 26px;
+            border: 1px solid var(--border);
+            transition: all var(--ease);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(255, 122, 156, .05), rgba(42, 127, 255, .03));
+            opacity: 0;
+            transition: opacity var(--ease);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--sh-lg);
+            border-color: rgba(255, 122, 156, .2);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .srv-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.9rem;
+            margin-bottom: 22px;
+            transition: transform var(--ease);
+        }
+
+        .service-card:hover .srv-icon {
+            transform: scale(1.12) rotate(-6deg);
+        }
+
+        .srv-1 {
+            background: var(--pink-lt);
+        }
+
+        .srv-2 {
+            background: var(--blue-lt);
+        }
+
+        .srv-3 {
+            background: var(--teal-lt);
+        }
+
+        .srv-4 {
+            background: #FFF8E8;
+        }
+
+        .service-card h3 {
+            font-family: var(--fh);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -.02em;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            font-size: .86rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .srv-arrow {
+            position: absolute;
+            bottom: 20px;
+            right: 22px;
+            font-size: 1.1rem;
+            color: var(--pink);
+            opacity: 0;
+            transform: translateX(-6px);
+            transition: all var(--ease);
+        }
+
+        .service-card:hover .srv-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ══════════════════════════════════════════
+   WHY CHOOSE
+══════════════════════════════════════════ */
+        .why {
+            padding: 110px 0;
+            background: var(--white);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .why-text {}
+
+        .why-points {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .why-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 22px 20px;
+            border-radius: var(--r);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            transition: all var(--ease);
+        }
+
+        .why-point:hover {
+            background: var(--white);
+            box-shadow: var(--sh-md);
+            transform: translateX(6px);
+            border-color: rgba(255, 122, 156, .25);
+        }
+
+        .wp-icon {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: transform var(--ease);
+        }
+
+        .why-point:hover .wp-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .wpi-1 {
+            background: var(--pink-lt);
+        }
+
+        .wpi-2 {
+            background: var(--blue-lt);
+        }
+
+        .wpi-3 {
+            background: var(--teal-lt);
+        }
+
+        .wpi-4 {
+            background: #FFF8E8;
+        }
+
+        .wp-content h4 {
+            font-family: var(--fh);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 5px;
+            letter-spacing: -.02em;
+        }
+
+        .wp-content p {
+            font-size: .85rem;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        /* Why visual side */
+        .why-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .why-stat {
+            background: var(--bg);
+            border-radius: var(--rl);
+            padding: 28px 22px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all var(--ease);
+        }
+
+        .why-stat:hover {
+            background: var(--white);
+            box-shadow: var(--sh-md);
+            transform: translateY(-6px);
+        }
+
+        .why-stat:nth-child(1) {
+            background: linear-gradient(135deg, var(--pink-lt), #FFE4EC);
+        }
+
+        .why-stat:nth-child(2) {
+            background: linear-gradient(135deg, var(--blue-lt), #D6E8FF);
+        }
+
+        .why-stat:nth-child(3) {
+            background: linear-gradient(135deg, var(--teal-lt), #C8F6ED);
+        }
+
+        .why-stat:nth-child(4) {
+            background: linear-gradient(135deg, #FFF8E8, #FFF0CC);
+        }
+
+        .ws-num {
+            display: block;
+            font-family: var(--fh);
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .ws-label {
+            font-size: .78rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        /* ══════════════════════════════════════════
+   PROFILE CARD
+══════════════════════════════════════════ */
+        .profile-sec {
+            padding: 110px 0;
+            background: linear-gradient(160deg, var(--bg) 0%, var(--pink-lt) 50%, var(--blue-lt) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-sec::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 122, 156, .1) 0%, transparent 65%);
+            top: -200px;
+            right: -200px;
+            pointer-events: none;
+        }
+
+        .profile-card {
+            max-width: 820px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 40px 120px rgba(255, 122, 156, .2), 0 8px 40px rgba(42, 127, 255, .1);
+            border: 1px solid rgba(255, 122, 156, .15);
+            display: grid;
+            grid-template-columns: 320px 1fr;
+        }
+
+        .pc-left {
+            background: linear-gradient(160deg, var(--pink-lt) 0%, var(--blue-lt) 100%);
+            padding: 48px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pc-left::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 20%, rgba(255, 122, 156, .2) 0%, transparent 60%);
+        }
+
+        .pc-avatar {
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(135deg, rgba(255, 122, 156, .25), rgba(42, 127, 255, .2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 4px solid var(--white);
+            box-shadow: 0 8px 32px rgba(255, 122, 156, .3);
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+            animation: floatCard 5s ease-in-out infinite;
+        }
+
+        .pc-name {
+            font-family: var(--fh);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pc-spec {
+            font-size: .84rem;
+            color: var(--muted);
+            margin: 4px 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pc-stars {
+            color: #F5A623;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pc-rating {
+            font-size: .78rem;
+            color: var(--muted);
+            position: relative;
+            z-index: 1;
+        }
+
+        .pc-right {
+            padding: 48px 40px;
+        }
+
+        .pc-right h3 {
+            font-family: var(--fh);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+            letter-spacing: -.02em;
+        }
+
+        .pc-right .pc-tag {
+            margin-bottom: 24px;
+        }
+
+        .pc-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .pc-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: .9rem;
+            color: var(--muted);
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .pc-meta-row strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .pc-meta-ico {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .pc-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .pc-avail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: var(--teal);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .avail-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--teal);
+            border-radius: 50%;
+            animation: pulse-teal 2s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse-teal {
 
             0%,
             100% {
-                border-radius: 40% 30% 30% 40% / 40% 30% 40% 30%;
+                box-shadow: 0 0 0 0 rgba(0, 201, 167, .5);
             }
 
             50% {
-                border-radius: 30% 40% 40% 30% / 30% 40% 30% 40%;
+                box-shadow: 0 0 0 6px rgba(0, 201, 167, 0);
             }
         }
 
-        .abt-main img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        /* ══════════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════════ */
+        .testi {
+            padding: 110px 0;
+            background: var(--white);
         }
 
-        .abt-sm {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50%;
-            height: 46%;
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 4px solid var(--white);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .abt-sm img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Fun stat bubble on image */
-        .fun-stat {
-            position: absolute;
-            top: 42%;
-            left: -24px;
-            background: var(--sunshine);
-            color: var(--deep);
-            border-radius: 20px;
-            padding: 1rem 1.25rem;
+        .testi-header {
             text-align: center;
-            box-shadow: 0 12px 36px rgba(255, 209, 102, 0.35);
-            animation: floatY 4s ease-in-out infinite alternate;
+            margin-bottom: 56px;
         }
 
-        .fun-stat .bnum {
-            font-family: var(--font-head);
-            font-size: 2rem;
-            font-weight: 900;
-            line-height: 1;
+        .testi-header .sec-sub {
+            margin: 0 auto;
         }
 
-        .fun-stat .blabel {
-            font-size: 0.7rem;
-            font-weight: 800;
-            display: block;
-            margin-top: 0.15rem;
-        }
-
-        /* Left: text */
-        .about-text .sec-label {
-            margin-bottom: 0.5rem;
-        }
-
-        .about-desc {
-            font-size: 0.95rem;
-            color: var(--muted);
-            line-height: 1.8;
-            margin: 1.1rem 0 1.8rem;
-            max-width: 480px;
-        }
-
-        /* Feature list */
-        .feat-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-            margin-bottom: 2rem;
-        }
-
-        .feat-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.85rem;
-        }
-
-        .feat-check {
-            width: 26px;
-            height: 26px;
-            border-radius: 8px;
-            background: var(--mint-pale);
-            color: var(--mint);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            font-weight: 800;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .feat-text {
-            font-size: 0.9rem;
-            color: var(--muted);
-            line-height: 1.55;
-        }
-
-        .feat-text strong {
-            color: var(--dark-text);
-            display: block;
-            font-size: 0.95rem;
-        }
-
-        /* ============================================================
-       MILESTONES / STATS BAND
-       ============================================================ */
-        .stats-band {
-            background: var(--coral);
-            border-radius: 32px;
-            margin: 0 2rem;
-            padding: 3rem 3.5rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat-b {
-            position: relative;
-        }
-
-        .stat-b:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 20%;
-            bottom: 20%;
-            width: 1px;
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .stat-b .num {
-            font-family: var(--font-head);
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--white);
-            line-height: 1;
-        }
-
-        .stat-b .unit {
-            color: var(--sunshine);
-        }
-
-        .stat-b .lbl {
-            font-size: 0.82rem;
-            color: rgba(255, 255, 255, 0.75);
-            font-weight: 600;
-            margin-top: 0.3rem;
-        }
-
-        /* ============================================================
-       TESTIMONIALS
-       ============================================================ */
-        .testimonials {
-            padding: 6rem 0;
-        }
-
-        .test-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .test-grid {
+        .testi-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
+            gap: 22px;
         }
 
-        .test-card {
-            background: var(--white);
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius);
-            padding: 2rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .test-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 45px rgba(0, 0, 0, 0.07);
-        }
-
-        .stars {
-            color: var(--sunshine);
-            letter-spacing: 2px;
-            margin-bottom: 0.85rem;
-            font-size: 0.9rem;
-        }
-
-        .test-q {
-            font-size: 0.88rem;
-            color: var(--muted);
-            line-height: 1.75;
-            font-style: italic;
-            margin-bottom: 1.4rem;
-        }
-
-        .test-auth {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .t-av {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            overflow: hidden;
-            background: var(--coral-pale);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-            border: 2px solid var(--white);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .t-av img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .auth-name {
-            font-weight: 800;
-            font-size: 0.9rem;
-            color: var(--deep);
-        }
-
-        .auth-sub {
-            font-size: 0.76rem;
-            color: var(--muted);
-        }
-
-        /* ============================================================
-       APPOINTMENT CTA
-       ============================================================ */
-        .appt {
-            padding: 6rem 0;
-        }
-
-        .appt-wrap {
-            background: linear-gradient(135deg, #FFF0E0 0%, #E6F5FF 100%);
-            border-radius: 36px;
-            padding: 5rem 4rem;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 3rem;
-            align-items: center;
-            border: 2px solid rgba(255, 107, 107, 0.15);
+        .testi-card {
+            background: var(--bg);
+            border-radius: var(--rl);
+            padding: 34px 28px;
+            border: 1px solid var(--border);
+            transition: all var(--ease);
             position: relative;
             overflow: hidden;
         }
 
-        /* Decorative corner circles */
-        .appt-wrap::before {
-            content: '';
-            position: absolute;
-            bottom: -80px;
-            right: -80px;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 107, 107, 0.12) 0%, transparent 70%);
-            pointer-events: none;
+        .testi-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sh-lg);
+            background: var(--white);
         }
 
-        .appt-wrap::after {
-            content: '';
-            position: absolute;
-            top: -60px;
-            left: -60px;
-            width: 240px;
-            height: 240px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(76, 175, 245, 0.1) 0%, transparent 70%);
-            pointer-events: none;
+        .testi-hi {
+            background: linear-gradient(145deg, var(--pink-dk), var(--pink));
+            border-color: transparent;
+            color: var(--white);
         }
 
-        .appt-title {
-            font-family: var(--font-head);
-            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-            font-weight: 900;
-            color: var(--deep);
-            line-height: 1.18;
-            margin-bottom: 0.8rem;
+        .testi-hi:hover {
+            background: linear-gradient(145deg, #C04469, var(--pink-dk));
         }
 
-        .appt-title em {
-            font-style: italic;
-            color: var(--coral);
+        .testi-hi .testi-text,
+        .testi-hi .testi-name span {
+            color: rgba(255, 255, 255, .75);
         }
 
-        .appt-desc {
-            font-size: 0.93rem;
+        .testi-hi strong {
+            color: var(--white);
+        }
+
+        .testi-hi .testi-stars {
+            color: #FFD23F;
+        }
+
+        .testi-hi .testi-av {
+            background: rgba(255, 255, 255, .18);
+        }
+
+        .testi-hi .big-quote {
+            color: rgba(255, 255, 255, .18);
+        }
+
+        .big-quote {
+            font-family: var(--fh);
+            font-size: 5rem;
+            line-height: .55;
+            color: var(--pink-lt);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .testi-stars {
+            color: #F5A623;
+            font-size: .9rem;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+        }
+
+        .testi-text {
+            font-size: .9rem;
             color: var(--muted);
-            max-width: 480px;
             line-height: 1.75;
+            margin-bottom: 22px;
+            font-style: italic;
         }
 
-        .contact-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            margin-top: 1.8rem;
-        }
-
-        .ci {
+        .testi-name {
             display: flex;
             align-items: center;
-            gap: 0.55rem;
-            font-size: 0.87rem;
-            font-weight: 700;
-            color: var(--dark-text);
-            background: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            border: 1.5px solid var(--border);
+            gap: 12px;
         }
 
-        .appt-btns {
+        .testi-av {
+            width: 44px;
+            height: 44px;
+            background: var(--pink-lt);
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
             flex-shrink: 0;
         }
 
-        /* ============================================================
-       FOOTER
-       ============================================================ */
-        footer {
-            background: var(--deep);
-            color: rgba(255, 255, 255, 0.7);
-            padding: 4rem 0 2rem;
+        .testi-name strong {
+            display: block;
+            font-size: .9rem;
+            color: var(--text);
         }
 
-        .footer-grid {
+        .testi-name span {
+            font-size: .76rem;
+            color: var(--muted);
+        }
+
+        /* ══════════════════════════════════════════
+   CTA SECTION
+══════════════════════════════════════════ */
+        .cta-sec {
+            padding: 130px 0;
+            background: linear-gradient(140deg, #1A202C 0%, #2D3748 50%, #1A202C 100%);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .cta-sec::before {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 122, 156, .15) 0%, transparent 65%);
+            top: -250px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .cta-sec::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(42, 127, 255, .12) 0%, transparent 65%);
+            bottom: -180px;
+            right: -100px;
+            pointer-events: none;
+        }
+
+        .cta-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: var(--pink);
+            background: rgba(255, 122, 156, .12);
+            padding: 8px 18px;
+            border-radius: 50px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 122, 156, .25);
+        }
+
+        .cta-title {
+            font-family: var(--fh);
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.12;
+            letter-spacing: -.04em;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .cta-title em {
+            color: var(--pink);
+            font-style: italic;
+        }
+
+        .cta-sub {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .65);
+            max-width: 500px;
+            margin: 0 auto 44px;
+            line-height: 1.75;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--text);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .2);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .3);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, .3);
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, .08);
+            border-color: rgba(255, 255, 255, .6);
+            transform: translateY(-2px);
+        }
+
+        /* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+        .footer {
+            background: #0F1623;
+            color: rgba(255, 255, 255, .55);
+            padding: 80px 0 0;
+        }
+
+        .footer-inner {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 2.5rem;
+            grid-template-columns: 2fr 3fr;
+            gap: 60px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
         }
 
-        .f-logo {
+        .footer-logo {
+            margin-bottom: 16px;
+        }
+
+        .footer-logo .nav-logo {
+            color: var(--white);
+        }
+
+        .footer-brand p {
+            font-size: .86rem;
+            line-height: 1.75;
+            max-width: 260px;
+            margin-bottom: 24px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social a {
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, .07);
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            margin-bottom: 0.85rem;
+            justify-content: center;
+            font-size: .88rem;
+            font-weight: 700;
+            transition: all var(--ease);
         }
 
-        .f-logo .logo-icon {
-            box-shadow: none;
-        }
-
-        .f-logo .logo-text {
+        .footer-social a:hover {
+            background: var(--pink);
             color: var(--white);
+            transform: translateY(-3px);
         }
 
-        .f-desc {
-            font-size: 0.85rem;
-            line-height: 1.7;
-            max-width: 240px;
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
         }
 
-        .f-col h4 {
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.12em;
+        .footer-col h4 {
+            font-size: .78rem;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: .1em;
             color: var(--white);
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
 
-        .f-col ul {
-            list-style: none;
+        .footer-col {
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            gap: 12px;
         }
 
-        .f-col ul li a {
-            font-size: 0.85rem;
-            transition: color 0.2s;
+        .footer-col a {
+            font-size: .86rem;
+            color: rgba(255, 255, 255, .45);
+            transition: color var(--ease);
         }
 
-        .f-col ul li a:hover {
-            color: var(--coral);
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .fc-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .84rem;
+            color: rgba(255, 255, 255, .5);
         }
 
         .footer-bottom {
+            padding: 24px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 1.5rem;
-            font-size: 0.78rem;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 12px;
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .28);
         }
 
-        .f-socials {
-            display: flex;
-            gap: 0.6rem;
-        }
-
-        .fs-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: border-color 0.2s, color 0.2s, background 0.2s;
-        }
-
-        .fs-btn:hover {
-            border-color: var(--coral);
-            color: var(--coral);
-            background: rgba(255, 107, 107, 0.08);
-        }
-
-        /* ============================================================
-       MARQUEE
-       ============================================================ */
-        .marquee-strip {
-            background: var(--coral);
-            padding: 0.8rem 0;
-            overflow: hidden;
-        }
-
-        .marquee-track {
-            display: flex;
-            gap: 2.5rem;
-            width: max-content;
-            animation: marquee 18s linear infinite;
-        }
-
-        .marquee-item {
-            display: flex;
-            align-items: center;
-            gap: 0.55rem;
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.9);
-            white-space: nowrap;
-        }
-
-        .marquee-star {
-            color: var(--sunshine);
-            font-size: 1rem;
-        }
-
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* ============================================================
-       SCROLL TO TOP
-       ============================================================ */
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: var(--coral);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.1rem;
-            box-shadow: 0 6px 22px rgba(255, 107, 107, 0.4);
-            transition: transform 0.2s, opacity 0.3s;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 99;
-        }
-
-        .scroll-top.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .scroll-top:hover {
-            transform: translateY(-3px) scale(1.08);
-        }
-
-        /* ============================================================
-       RESPONSIVE — Tablet (max 960px)
-       ============================================================ */
-        @media (max-width: 960px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            /* Navbar */
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            /* Hero */
-            .hero {
-                padding: 7rem 0 4rem;
-            }
-
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                text-align: center;
-            }
-
-            .hero-visual {
-                order: -1;
-            }
-
-            .hero-desc {
-                max-width: 100%;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-actions {
-                justify-content: center;
-            }
-
-            .trust-row {
-                justify-content: center;
-            }
-
-            /* Blob photo */
-            .blob-frame {
-                width: 300px;
-                height: 360px;
-            }
-
-            .deco-ring-1 {
-                width: 380px;
-                height: 380px;
-            }
-
-            .deco-ring-2 {
-                width: 440px;
-                height: 440px;
-            }
-
-            .float-card.top-left {
-                left: 0;
-            }
-
-            .float-card.bottom-right {
-                right: 0;
-            }
-
-            /* Services */
+        /* ══════════════════════════════════════════
+   RESPONSIVE — 1200px (large tablets / small laptops)
+══════════════════════════════════════════ */
+        @media (max-width: 1200px) {
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            /* Stats band */
-            .stats-band {
-                grid-template-columns: repeat(2, 1fr);
-                margin: 0 1.5rem;
-            }
-
-            /* Stat dividers — hide vertical lines on 2-col */
-            .stat-b:nth-child(2)::after,
-            .stat-b:nth-child(4)::after {
-                display: none;
-            }
-
-            /* About */
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .about-visual {
-                height: 420px;
-                max-width: 520px;
-                margin: 0 auto;
-                width: 100%;
-            }
-
-            .fun-stat {
-                left: 0;
-            }
-
-            .about-desc {
-                max-width: 100%;
-            }
-
-            /* Testimonials */
-            .test-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            /* Appointment */
-            .appt-wrap {
-                grid-template-columns: 1fr;
-                padding: 3rem 2.5rem;
-            }
-
-            .appt-btns {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-
-            /* Footer */
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
+            .profile-card {
+                grid-template-columns: 280px 1fr;
             }
         }
 
-        /* ============================================================
-       RESPONSIVE — Mobile (max 640px)
-       ============================================================ */
-        @media (max-width: 640px) {
-            .container {
-                padding: 0 1.1rem;
+        /* ══════════════════════════════════════════
+   RESPONSIVE — 1024px (tablets landscape)
+══════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .nav {
+                padding: 0 24px;
             }
 
-            /* Hero */
             .hero {
-                padding: 6rem 0 3rem;
+                flex-direction: column;
+                padding: calc(var(--nav) + 60px) 28px 60px;
+                gap: 44px;
                 min-height: auto;
             }
 
-            .hero-title {
-                font-size: clamp(2rem, 8vw, 2.8rem);
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
             }
 
-            .hero-desc {
-                font-size: 0.92rem;
+            .hero-actions,
+            .hero-trust {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                width: 100%;
+            }
+
+            .doc-visual-wrap {
+                width: 300px;
+            }
+
+            .doc-img-frame {
+                width: 270px;
+                height: 360px;
+            }
+
+            .about-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .about-img-side {
+                max-width: 420px;
+                margin: 0 auto;
+            }
+
+            .why-visual {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 420px;
+                margin: 0 auto;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .profile-card {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+            }
+
+            .pc-left {
+                padding: 36px 28px;
+            }
+
+            .testi-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Reset horizontal reveal on mobile to avoid overflow */
+            .reveal.left,
+            .reveal.right {
+                transform: translateY(30px);
+            }
+
+            .reveal.left.vis,
+            .reveal.right.vis {
+                transform: translateY(0);
+            }
+        }
+
+        /* ══════════════════════════════════════════
+   RESPONSIVE — 768px (tablets portrait)
+══════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0 18px;
+            }
+
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            .wrap {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: calc(var(--nav) + 48px) 20px 56px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.2rem, 7vw, 3rem);
+            }
+
+            .hero-sub {
+                font-size: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                margin: 0 auto;
+            }
+
+            .about,
+            .services,
+            .why,
+            .profile-sec,
+            .testi,
+            .cta-sec {
+                padding: 75px 0;
+            }
+
+            .about-img-bg {
+                font-size: 6rem;
+                border-radius: 80px 30px 80px 30px;
+            }
+
+            .about-badge {
+                bottom: -14px;
+                right: -10px;
+                padding: 14px 16px;
+            }
+
+            .about-badge strong {
+                font-size: 1.8rem;
+            }
+
+            .profile-card {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                border-radius: 24px;
+            }
+
+            .pc-right {
+                padding: 32px 24px;
+            }
+
+            .hero-trust {
+                flex-direction: column;
+                align-items: center;
+                gap: 14px;
+            }
+
+            .testi-grid {
+                max-width: 100%;
+            }
+
+            .footer-inner {
+                gap: 36px;
+            }
+
+            .cta-sec {
+                padding: 90px 0;
+            }
+
+            .cta-sub {
+                font-size: .97rem;
+            }
+        }
+
+        /* ══════════════════════════════════════════
+   RESPONSIVE — 600px (large phones)
+══════════════════════════════════════════ */
+        @media (max-width: 600px) {
+            :root {
+                --nav: 64px;
+            }
+
+            .nav-logo {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                padding: calc(var(--nav) + 40px) 16px 48px;
+                gap: 36px;
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 8vw, 2.6rem);
+                letter-spacing: -.03em;
+            }
+
+            .hero-sub {
+                font-size: .95rem;
+                margin-bottom: 28px;
             }
 
             .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                margin-bottom: 36px;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-trust {
+                gap: 12px;
+            }
+
+            .trust-item {
+                font-size: .78rem;
+            }
+
+            .doc-visual-wrap {
+                width: 240px;
+            }
+
+            .doc-img-frame {
+                width: 220px;
+                height: 300px;
+            }
+
+            .doc-placeholder {
+                font-size: 6rem;
+            }
+
+            .fc-1,
+            .fc-2 {
+                display: none;
+            }
+
+            .sec-title {
+                font-size: clamp(1.75rem, 6vw, 2.4rem);
+            }
+
+            .sec-sub {
+                font-size: .95rem;
+            }
+
+            .about,
+            .services,
+            .why,
+            .profile-sec,
+            .testi,
+            .cta-sec {
+                padding: 60px 0;
+            }
+
+            .about-img-bg {
+                font-size: 5rem;
+                border-radius: 60px 20px 60px 20px;
+            }
+
+            .about-pills {
+                gap: 8px;
+            }
+
+            .pill {
+                font-size: .8rem;
+                padding: 8px 14px;
+            }
+
+            .why-visual {
+                max-width: 100%;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .ws-num {
+                font-size: 2rem;
+            }
+
+            .why-point {
+                padding: 16px 14px;
+                gap: 14px;
+            }
+
+            .wp-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .profile-card {
+                border-radius: 20px;
+            }
+
+            .pc-avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+
+            .pc-right {
+                padding: 24px 18px;
+            }
+
+            .pc-meta-row {
+                font-size: .82rem;
+                padding: 10px 12px;
+            }
+
+            .pc-actions {
+                flex-direction: column;
+            }
+
+            .pc-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .testi-card {
+                padding: 26px 20px;
+            }
+
+            .big-quote {
+                font-size: 4rem;
+            }
+
+            .cta-sec {
+                padding: 72px 0;
+            }
+
+            .cta-title {
+                font-size: clamp(1.8rem, 7vw, 2.8rem);
+            }
+
+            .cta-actions {
                 flex-direction: column;
                 align-items: center;
             }
 
-            .btn-primary,
-            .btn-sky,
-            .btn-ghost {
+            .cta-actions .btn {
                 width: 100%;
+                max-width: 320px;
                 justify-content: center;
-                font-size: 0.88rem;
-                padding: 0.85rem 1.5rem;
             }
 
-            /* Blob photo */
-            .blob-frame {
-                width: 240px;
-                height: 290px;
+            .footer {
+                padding: 56px 0 0;
             }
 
-            .deco-ring-1 {
-                width: 310px;
-                height: 310px;
+            .footer-inner {
+                gap: 32px;
+                padding-bottom: 40px;
             }
 
-            .deco-ring-2 {
-                width: 360px;
-                height: 360px;
-            }
-
-            .float-card {
-                padding: 0.6rem 0.85rem;
-            }
-
-            .fc-emoji {
-                font-size: 1.2rem;
-            }
-
-            .fc-text strong {
-                font-size: 0.78rem;
-            }
-
-            .fc-text {
-                font-size: 0.68rem;
-            }
-
-            .float-card.top-left {
-                top: 10px;
-                left: 0;
-            }
-
-            .float-card.bottom-right {
-                bottom: 20px;
-                right: 0;
-            }
-
-            .float-card.bottom-left {
-                bottom: -10px;
-                left: 5px;
-            }
-
-            /* Age bands */
-            .age-bands {
-                padding: 1rem 0 3rem;
-            }
-
-            .age-row {
-                gap: 0.6rem;
-            }
-
-            .age-pill {
-                padding: 0.5rem 1rem;
-                font-size: 0.78rem;
-            }
-
-            /* Services */
-            .services {
-                padding: 3rem 0;
-            }
-
-            .services-top {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-                margin-bottom: 1.8rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* Stats band */
-            .stats-band {
+            .footer-links {
                 grid-template-columns: 1fr 1fr;
-                padding: 2rem 1.5rem;
-                margin: 0 0;
-                border-radius: 20px;
-                gap: 1.5rem;
-            }
-
-            .stat-b .num {
-                font-size: 2rem;
-            }
-
-            /* About */
-            .about {
-                padding: 3rem 0;
-            }
-
-            .about-visual {
-                height: 320px;
-            }
-
-            .fun-stat {
-                left: 0;
-                top: auto;
-                bottom: 50%;
-                padding: 0.8rem 1rem;
-            }
-
-            .fun-stat .bnum {
-                font-size: 1.6rem;
-            }
-
-            /* Testimonials */
-            .testimonials {
-                padding: 3rem 0;
-            }
-
-            .test-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* Appointment */
-            .appt {
-                padding: 3rem 0;
-            }
-
-            .appt-wrap {
-                padding: 2.2rem 1.4rem;
-                border-radius: 24px;
-            }
-
-            .appt-btns {
-                flex-direction: column;
-            }
-
-            .appt-btns .btn-primary,
-            .appt-btns .btn-sky {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .contact-list {
-                gap: 0.7rem;
-            }
-
-            .ci {
-                font-size: 0.78rem;
-                padding: 0.4rem 0.85rem;
-            }
-
-            /* Footer */
-            footer {
-                padding: 3rem 0 1.5rem;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .f-desc {
-                max-width: 100%;
+                gap: 24px;
             }
 
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
-                gap: 0.5rem;
             }
 
-            /* Scroll top */
-            .scroll-top {
-                bottom: 1rem;
-                right: 1rem;
-                width: 40px;
-                height: 40px;
-                font-size: 0.95rem;
+            .footer-brand p {
+                max-width: 100%;
+            }
+
+            .wrap {
+                padding: 0 16px;
             }
         }
 
-        /* ============================================================
-       RESPONSIVE — Very Small (max 380px)
-       ============================================================ */
-        @media (max-width: 380px) {
-            .blob-frame {
-                width: 200px;
-                height: 240px;
+        /* ══════════════════════════════════════════
+   RESPONSIVE — 400px (small phones)
+══════════════════════════════════════════ */
+        @media (max-width: 400px) {
+            .hero-title {
+                font-size: 1.9rem;
             }
 
-            .deco-ring-1 {
-                width: 270px;
-                height: 270px;
+            .doc-img-frame {
+                width: 190px;
+                height: 260px;
             }
 
-            .deco-ring-2 {
-                width: 310px;
-                height: 310px;
+            .doc-placeholder {
+                font-size: 5rem;
             }
 
-            .float-card.top-left,
-            .float-card.bottom-right,
-            .float-card.bottom-left {
-                display: none;
+            .services-grid {
+                max-width: 100%;
             }
 
-            .stats-band {
-                grid-template-columns: 1fr 1fr;
+            .service-card {
+                padding: 26px 18px;
             }
 
-            .hero-actions .btn-primary,
-            .hero-actions .btn-sky {
-                font-size: 0.82rem;
+            .srv-icon {
+                width: 52px;
+                height: 52px;
+                font-size: 1.5rem;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+
+            .why-stat {
+                padding: 20px 14px;
+            }
+
+            .ws-num {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -1906,571 +2172,486 @@
 
 <body>
 
-    <!-- ============================================================
-       AMBIENT BACKGROUND
-       ============================================================ -->
-    <div class="bg-shapes" aria-hidden="true">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
+    <!-- ════════════════════════
+     LOADER
+════════════════════════ -->
+    <div id="loader">
+        <div class="ldr-heart"></div>
+        <div class="ldr-name">Dr. Rukayaa</div>
     </div>
-    <div class="dots-bg" aria-hidden="true"></div>
 
-    <!-- ============================================================
-       NAVBAR
-       ============================================================ -->
-    <nav id="navbar">
-        <div class="container nav-inner">
-
-            <div class="nav-logo">
-                <div class="logo-icon">🍼</div>
-                <div class="logo-text">Little<span>Stars</span></div>
-            </div>
-
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
-                <li><a href="#appointment" class="nav-book">Book Visit</a></li>
-            </ul>
-
-            <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </div>
+    <!-- ════════════════════════
+     NAVBAR
+════════════════════════ -->
+    <nav class="nav" id="nav">
+        <div class="nav-logo">
+            <div class="logo-dot"></div>
+            Dr. Rukayaa
         </div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+        </ul>
+        <a href="#cta" class="nav-cta">💗 Book Appointment</a>
+        <button class="burger" id="burger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
-
-    <!-- Mobile Navigation Menu -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="#services">Services</a>
+    <div class="mob-menu" id="mobMenu">
         <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#profile">Profile</a>
         <a href="#testimonials">Reviews</a>
-        <a href="#appointment" class="nav-book">Book Visit</a>
+        <a href="#cta" class="mob-cta">💗 Book Appointment</a>
     </div>
 
-    <!-- ============================================================
-       HERO
-       ============================================================ -->
+    <!-- ════════════════════════
+     HERO
+════════════════════════ -->
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-grid">
+        <div class="hero-orb orb-1"></div>
+        <div class="hero-orb orb-2"></div>
+        <div class="hero-orb orb-3"></div>
 
-                <!-- Text -->
-                <div class="hero-text reveal">
-                    <div class="badge hero-badge">
-                        <span class="dot"></span> Newborn to Teen Care
-                    </div>
-
-                    <h1 class="hero-title">
-                        Every Little <span class="wavy coral">Heartbeat</span><br>
-                        Deserves the<br>
-                        Best Start 🌟
-                    </h1>
-
-                    <p class="hero-desc">
-                        Dr. Emily Chen is a board-certified pediatrician dedicated to nurturing the health and happiness
-                        of children from birth through adolescence — with warmth, expertise, and a gentle touch.
-                    </p>
-
-                    <div class="hero-actions">
-                        <a href="#appointment" class="btn-primary">🗓 Book an Appointment</a>
-                        <a href="#services" class="btn-sky">Our Services →</a>
-                    </div>
-
-                    <!-- Trust row -->
-                    <div class="trust-row">
-                        <div class="trust-avatars">
-                            <!-- Demo parent avatars -->
-                            <div class="av">👩</div>
-                            <div class="av">👨</div>
-                            <div class="av">👩‍👦</div>
-                            <div class="av">👨‍👧</div>
-                        </div>
-                        <div class="trust-text">
-                            <strong>3,800+ Happy Families</strong>
-                            Trust Dr. Emily with their children
-                        </div>
-                    </div>
+        <div class="hero-content">
+            <div class="hero-tag">
+                <span class="tag tag-pink">💗 Mother &amp; Child Specialist</span>
+            </div>
+            <h1 class="hero-title">
+                Caring for<br />
+                <span class="hl">Mothers &amp; Children</span><br />
+                with Compassion
+            </h1>
+            <p class="hero-sub">
+                Every mother deserves gentle, expert care — and every child deserves the healthiest start in life.
+                Dr. Rukayaa brings 8+ years of warm, dedicated expertise to your family's journey.
+            </p>
+            <div class="hero-actions">
+                <a href="#cta" class="btn btn-pink">💗 Book Appointment</a>
+                <a href="#profile" class="btn btn-outline">View Profile →</a>
+            </div>
+            <div class="hero-trust">
+                <div class="trust-item">
+                    <div class="trust-ico">🏅</div>
+                    <span>8+ Years Experience</span>
                 </div>
-
-                <!-- Visual -->
-                <div class="hero-visual reveal">
-
-                    <!-- Decorative rings -->
-                    <div class="deco-ring deco-ring-1"></div>
-                    <div class="deco-ring deco-ring-2"></div>
-
-                    <!-- Blob photo frame -->
-                    <div class="blob-frame">
-                        <!--
-              DEMO IMAGE — Replace with pediatrician's photo.
-              Ideal: warm, smiling doctor with a baby/child. 500×600px.
-            -->
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80"
-                            alt="Dr. Emily Chen – Pediatrician" />
-                    </div>
-
-                    <!-- Floating cards -->
-                    <div class="float-card top-left">
-                        <span class="fc-emoji">👶</span>
-                        <div class="fc-text">
-                            <strong>Newborn Care</strong>
-                            First checkup within 48hrs
-                        </div>
-                    </div>
-
-                    <div class="float-card bottom-right">
-                        <span class="fc-emoji">💉</span>
-                        <div class="fc-text">
-                            <strong>All Vaccines</strong>
-                            CDC-approved schedule
-                        </div>
-                    </div>
-
-                    <div class="float-card bottom-left">
-                        <span class="fc-emoji">⭐</span>
-                        <div class="fc-text">
-                            <strong>4.9 Rating</strong>
-                            500+ parent reviews
-                        </div>
-                    </div>
-
-                    <!-- Decorative bubbles -->
-                    <div class="bubble b1"></div>
-                    <div class="bubble b2"></div>
-                    <div class="bubble b3"></div>
+                <div class="trust-item">
+                    <div class="trust-ico">👶</div>
+                    <span>2,000+ Happy Families</span>
                 </div>
+                <div class="trust-item">
+                    <div class="trust-ico">⭐</div>
+                    <span>4.9 Rating</span>
+                </div>
+            </div>
+        </div>
 
+        <div class="hero-visual">
+            <div class="doc-visual-wrap">
+                <div class="doc-img-frame">
+                    <div class="doc-placeholder">👩‍⚕️</div>
+                </div>
+                <div class="float-card fc-1">
+                    <span class="fc-1-icon">💗</span>
+                    <span class="fc-strong">2,000+</span>
+                    <span class="fc-label">Happy Families</span>
+                </div>
+                <div class="float-card fc-2">
+                    <span class="fc-2-icon">⭐</span>
+                    <span class="fc-strong">4.9 / 5.0</span>
+                    <span class="fc-label">Patient Rating</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-       AGE GROUPS WE SEE
-       ============================================================ -->
-    <section class="age-bands">
-        <div class="container">
-            <div class="age-row reveal stagger">
-                <div class="age-pill"><span class="ep">🍼</span> Newborns (0–1 mo)</div>
-                <div class="age-pill"><span class="ep">👶</span> Infants (1–12 mo)</div>
-                <div class="age-pill"><span class="ep">🧒</span> Toddlers (1–3 yrs)</div>
-                <div class="age-pill"><span class="ep">🧑</span> Preschool (3–5 yrs)</div>
-                <div class="age-pill"><span class="ep">🧑‍🏫</span> School Age (5–12 yrs)</div>
-                <div class="age-pill"><span class="ep">🧑‍🎤</span> Teens (13–18 yrs)</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-       MARQUEE
-       ============================================================ -->
-    <div class="marquee-strip" aria-hidden="true">
-        <div class="marquee-track">
-            <div class="marquee-item"><span class="marquee-star">★</span> Well-Child Visits</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Vaccinations</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Sick Child Care</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Growth Monitoring</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Developmental Screening</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Telehealth Available</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Same-Day Sick Slots</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Newborn Consultations</div>
-            <!-- Duplicate for seamless loop -->
-            <div class="marquee-item"><span class="marquee-star">★</span> Well-Child Visits</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Vaccinations</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Sick Child Care</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Growth Monitoring</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Developmental Screening</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Telehealth Available</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Same-Day Sick Slots</div>
-            <div class="marquee-item"><span class="marquee-star">★</span> Newborn Consultations</div>
-        </div>
-    </div>
-
-    <!-- ============================================================
-       SERVICES
-       ============================================================ -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="services-top reveal">
-                <div>
-                    <span class="sec-label">What We Offer</span>
-                    <h2 class="sec-title">Gentle Care for <em>Every Stage</em></h2>
-                </div>
-                <a href="#appointment" class="btn-ghost">View All →</a>
-            </div>
-
-            <div class="services-grid stagger">
-
-                <div class="svc-card coral reveal">
-                    <div class="svc-icon">👶</div>
-                    <h3>Newborn & Infant Care</h3>
-                    <p>First days checkups, feeding support, weight tracking, and jaundice monitoring to ensure your
-                        baby thrives right from the start.</p>
-                </div>
-
-                <div class="svc-card sky reveal">
-                    <div class="svc-icon">💉</div>
-                    <h3>Immunizations</h3>
-                    <p>Full CDC-recommended vaccine schedule from birth through adolescence, administered with a gentle,
-                        fear-free technique.</p>
-                </div>
-
-                <div class="svc-card mint reveal">
-                    <div class="svc-icon">📏</div>
-                    <h3>Growth & Development</h3>
-                    <p>Regular milestone screenings, head circumference, height and weight charting to ensure healthy
-                        developmental progress.</p>
-                </div>
-
-                <div class="svc-card sun reveal">
-                    <div class="svc-icon">🤒</div>
-                    <h3>Sick Child Visits</h3>
-                    <p>Same-day and urgent slots for fevers, ear infections, rashes, respiratory illness, and other
-                        sudden-onset concerns.</p>
-                </div>
-
-                <div class="svc-card coral reveal">
-                    <div class="svc-icon">🧠</div>
-                    <h3>Behavioral & Mental Health</h3>
-                    <p>Screening for ADHD, anxiety, and developmental delays with compassionate counseling and
-                        specialist referrals.</p>
-                </div>
-
-                <div class="svc-card sky reveal">
-                    <div class="svc-icon">💻</div>
-                    <h3>Telehealth Visits</h3>
-                    <p>Video consultations for follow-ups, minor concerns, prescription refills, and parent guidance —
-                        all from home.</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-       STATS BAND
-       ============================================================ -->
-    <div class="stats-band reveal" style="position:relative;z-index:2;">
-        <div class="stat-b">
-            <div class="num">12<span class="unit">+</span></div>
-            <div class="lbl">Years in Pediatrics</div>
-        </div>
-        <div class="stat-b">
-            <div class="num">3.8<span class="unit">k</span></div>
-            <div class="lbl">Families Served</div>
-        </div>
-        <div class="stat-b">
-            <div class="num">99<span class="unit">%</span></div>
-            <div class="lbl">Parent Satisfaction</div>
-        </div>
-        <div class="stat-b">
-            <div class="num">4.9<span class="unit">★</span></div>
-            <div class="lbl">Average Rating</div>
-        </div>
-    </div>
-
-    <!-- ============================================================
-       ABOUT
-       ============================================================ -->
+    <!-- ════════════════════════
+     ABOUT
+════════════════════════ -->
     <section class="about" id="about">
-        <div class="container">
+        <div class="wrap">
             <div class="about-grid">
-
-                <!-- Left text -->
-                <div class="about-text reveal">
-                    <span class="sec-label">Meet the Doctor</span>
-                    <h2 class="sec-title">Dr. Emily <em>Chen</em>, MD</h2>
-
-                    <p class="about-desc">
-                        A mother herself, Dr. Emily Chen understands that every child is wonderfully unique. She blends
-                        evidence-based medicine with genuine warmth — creating a practice where kids feel safe and
-                        parents feel heard.
+                <div class="about-img-side reveal left">
+                    <div class="about-img-bg">👩‍⚕️</div>
+                    <div class="about-badge">
+                        <strong>8+</strong>
+                        <span>Years of Care</span>
+                    </div>
+                </div>
+                <div class="about-text-side reveal d1">
+                    <div class="tag tag-pink" style="margin-bottom:20px">About Dr. Rukayaa</div>
+                    <h2 class="sec-title">A Doctor Who Cares Like <em>Family</em></h2>
+                    <p class="about-p">
+                        Dr. Rukayaa is a dedicated Mother &amp; Child Specialist with over 8 years of hands-on
+                        experience in maternal health, newborn care, and child development. She believes that healing
+                        begins with trust — and trust begins with listening.
                     </p>
-
-                    <div class="feat-list stagger">
-                        <div class="feat-item reveal">
-                            <div class="feat-check">✓</div>
-                            <div class="feat-text">
-                                <strong>MD — Stanford University School of Medicine</strong>
-                                Pediatric Residency at UCSF Benioff Children's Hospital
-                            </div>
-                        </div>
-                        <div class="feat-item reveal">
-                            <div class="feat-check">✓</div>
-                            <div class="feat-text">
-                                <strong>Board Certified — American Board of Pediatrics</strong>
-                                Fellowship in Developmental-Behavioral Pediatrics
-                            </div>
-                        </div>
-                        <div class="feat-item reveal">
-                            <div class="feat-check">✓</div>
-                            <div class="feat-text">
-                                <strong>Fear-Free Certified Practitioner</strong>
-                                Specialist in reducing medical anxiety in children
-                            </div>
-                        </div>
-                        <div class="feat-item reveal">
-                            <div class="feat-check">✓</div>
-                            <div class="feat-text">
-                                <strong>"Top Pediatrician" — Bay Area Parent Magazine</strong>
-                                Four consecutive years: 2021 – 2024
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="#appointment" class="btn-primary">🗓 Schedule a Visit</a>
-                </div>
-
-                <!-- Right visual -->
-                <div class="about-visual reveal">
-                    <!-- Main organic-shaped photo -->
-                    <div class="abt-main">
-                        <!--
-              DEMO IMAGE — Replace with doctor + baby/child photo.
-            -->
-                        <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=600&q=80"
-                            alt="Dr. Emily with a patient" />
-                    </div>
-
-                    <!-- Small photo -->
-                    <div class="abt-sm">
-                        <!--
-              DEMO IMAGE — Replace with clinic / waiting room photo.
-            -->
-                        <img src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=400&q=80"
-                            alt="Little Stars Pediatric clinic" />
-                    </div>
-
-                    <!-- Fun stat bubble -->
-                    <div class="fun-stat">
-                        <div class="bnum">3.8k</div>
-                        <span class="blabel">Happy Kids 🌟</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-       TESTIMONIALS
-       ============================================================ -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="test-header reveal">
-                <span class="sec-label">Parent Stories</span>
-                <h2 class="sec-title">What <em>Families</em> Are Saying</h2>
-            </div>
-
-            <div class="test-grid stagger">
-
-                <div class="test-card reveal">
-                    <div class="stars">★★★★★</div>
-                    <p class="test-q">"Dr. Emily was incredible with our newborn. She explained everything so clearly
-                        and made us first-time parents feel completely at ease. We are beyond grateful."</p>
-                    <div class="test-auth">
-                        <div class="t-av">👩‍👦</div>
-                        <div>
-                            <div class="auth-name">Sofia & James T.</div>
-                            <div class="auth-sub">Parents of baby Leo, 4 months</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="test-card reveal">
-                    <div class="stars">★★★★★</div>
-                    <p class="test-q">"My daughter used to cry before every doctor visit. Since switching to Dr. Chen,
-                        she actually asks when she can go back. The office is so warm and fun for kids!"</p>
-                    <div class="test-auth">
-                        <div class="t-av">👨‍👧</div>
-                        <div>
-                            <div class="auth-name">Marcus W.</div>
-                            <div class="auth-sub">Father of Emma, 5 years old</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="test-card reveal">
-                    <div class="stars">★★★★★</div>
-                    <p class="test-q">"Three kids under 6 — Dr. Emily keeps all of them on track with their development
-                        and vaccines. I trust her completely. Best pediatrician in the city, hands down."</p>
-                    <div class="test-auth">
-                        <div class="t-av">👩‍👧‍👦</div>
-                        <div>
-                            <div class="auth-name">Priya M.</div>
-                            <div class="auth-sub">Mother of three, patient since 2019</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-       APPOINTMENT CTA
-       ============================================================ -->
-    <section class="appt" id="appointment">
-        <div class="container">
-            <div class="appt-wrap reveal">
-
-                <div>
-                    <span class="sec-label">Ready to Visit?</span>
-                    <h2 class="appt-title">Book Your Child's<br><em>First Appointment</em> Today</h2>
-                    <p class="appt-desc">
-                        New patients are warmly welcomed! Same-day sick slots are often available. Telehealth
-                        appointments can usually be scheduled within 24 hours.
+                    <p class="about-p">
+                        Her patient-first philosophy means every consultation is thorough, every concern is heard, and
+                        every family leaves feeling supported, informed, and cared for.
                     </p>
-
-                    <div class="contact-list">
-                        <div class="ci">📞 +8801577218105</div>
-                        <div class="ci">📧 developer.junaead@gmail.com</div>
-                        <div class="ci">📍 College Road, mymensingh</div>
+                    <div class="about-pills">
+                        <div class="pill"><span class="pill-ico">🤰</span> Pregnancy Care</div>
+                        <div class="pill"><span class="pill-ico">👶</span> Newborn Specialist</div>
+                        <div class="pill"><span class="pill-ico">🌱</span> Child Development</div>
+                        <div class="pill"><span class="pill-ico">🥗</span> Nutrition Guidance</div>
+                        <div class="pill"><span class="pill-ico">💉</span> Vaccinations</div>
+                        <div class="pill"><span class="pill-ico">🏥</span> Prenatal Checkups</div>
                     </div>
+                    <a href="#cta" class="btn btn-pink">Book a Consultation →</a>
                 </div>
-
-                <div class="appt-btns">
-                    <a href="tel:+8801577218105" class="btn-primary">📞 Call Now</a>
-                    <a href="mailto:developer.junaead@gmail.com" class="btn-sky">✉️ Email Us</a>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-       FOOTER
-       ============================================================ -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-
-                <div>
-                    <div class="f-logo">
-                        <div class="logo-icon">🍼</div>
-                        <div class="logo-text">Little<span style="color:var(--coral)">Stars</span></div>
-                    </div>
-                    <p class="f-desc">Compassionate pediatric care for children of all ages. Growing healthy futures,
-                        one little heartbeat at a time.</p>
-                    <div class="f-socials" style="margin-top:1.25rem;">
-                        <div class="fs-btn">f</div>
-                        <div class="fs-btn">ig</div>
-                        <div class="fs-btn">in</div>
-                        <div class="fs-btn">yt</div>
-                    </div>
-                </div>
-
-                <div class="f-col">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About Dr. Emily</a></li>
-                        <li><a href="#testimonials">Reviews</a></li>
-                        <li><a href="#appointment">Book a Visit</a></li>
-                    </ul>
-                </div>
-
-                <div class="f-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#">Newborn Care</a></li>
-                        <li><a href="#">Immunizations</a></li>
-                        <li><a href="#">Sick Visits</a></li>
-                        <li><a href="#">Telehealth</a></li>
-                        <li><a href="#">Mental Health</a></li>
-                    </ul>
-                </div>
-
-                <div class="f-col">
-                    <h4>Office Hours</h4>
-                    <ul>
-                        <li><a>Mon – Fri: 8 AM – 5 PM</a></li>
-                        <li><a>Saturday: 9 AM – 1 PM</a></li>
-                        <li><a>Sunday: Closed</a></li>
-                        <li><a style="color:var(--coral);">Telehealth: 7 Days</a></li>
-                        <li><a style="color:var(--mint);">After-hours advice line ✓</a></li>
-                    </ul>
-                </div>
-
+    <!-- ════════════════════════
+     SERVICES
+════════════════════════ -->
+    <section class="services" id="services">
+        <div class="wrap">
+            <div class="services-header">
+                <div class="tag tag-pink reveal" style="margin-bottom:16px">Our Services</div>
+                <h2 class="sec-title reveal">Comprehensive Care for <em>Every Stage</em></h2>
+                <p class="sec-sub reveal">From the first trimester to your child's growing years — Dr. Rukayaa is with
+                    you every step of the way.</p>
             </div>
+            <div class="services-grid">
+                <div class="service-card reveal d1">
+                    <div class="srv-icon srv-1">🤰</div>
+                    <h3>Pregnancy Care</h3>
+                    <p>Expert prenatal monitoring, guidance through each trimester, and compassionate support as you
+                        prepare for birth.</p>
+                    <span class="srv-arrow">→</span>
+                </div>
+                <div class="service-card reveal d2">
+                    <div class="srv-icon srv-2">👶</div>
+                    <h3>Newborn Care</h3>
+                    <p>Specialised care for your newborn's first weeks — feeding support, health screenings, and
+                        developmental checks.</p>
+                    <span class="srv-arrow">→</span>
+                </div>
+                <div class="service-card reveal d3">
+                    <div class="srv-icon srv-3">🌱</div>
+                    <h3>Child Health Checkups</h3>
+                    <p>Regular health assessments, vaccinations, and growth tracking to keep your child thriving at
+                        every milestone.</p>
+                    <span class="srv-arrow">→</span>
+                </div>
+                <div class="service-card reveal d4">
+                    <div class="srv-icon" style="background:#FFF8E8">🥗</div>
+                    <h3>Nutrition Guidance</h3>
+                    <p>Personalised dietary plans for mothers and children, supporting healthy development from the
+                        inside out.</p>
+                    <span class="srv-arrow">→</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- ════════════════════════
+     WHY CHOOSE
+════════════════════════ -->
+    <section class="why" id="why">
+        <div class="wrap">
+            <div class="why-grid">
+                <div class="why-text">
+                    <div class="tag tag-pink reveal" style="margin-bottom:20px">Why Choose Her</div>
+                    <h2 class="sec-title reveal">Care That Goes <em>Beyond</em> the Clinic</h2>
+                    <p class="sec-sub reveal" style="margin-bottom:0">Dr. Rukayaa's approach is rooted in empathy,
+                        evidence, and a genuine love for the families she serves.</p>
+                    <div class="why-points">
+                        <div class="why-point reveal d1">
+                            <div class="wp-icon wpi-1">❤️</div>
+                            <div class="wp-content">
+                                <h4>Experienced &amp; Caring</h4>
+                                <p>8+ years of specialised experience, delivered with a warm, personal touch that makes
+                                    patients feel at home.</p>
+                            </div>
+                        </div>
+                        <div class="why-point reveal d2">
+                            <div class="wp-icon wpi-2">🎯</div>
+                            <div class="wp-content">
+                                <h4>Patient-Centered Approach</h4>
+                                <p>Every treatment plan is tailored to the individual. Your concerns are always heard,
+                                    your questions always answered.</p>
+                            </div>
+                        </div>
+                        <div class="why-point reveal d3">
+                            <div class="wp-icon wpi-3">🔬</div>
+                            <div class="wp-content">
+                                <h4>Modern Treatment Methods</h4>
+                                <p>Up-to-date with the latest research and medical advancements for safe, effective,
+                                    evidence-based care.</p>
+                            </div>
+                        </div>
+                        <div class="why-point reveal d4">
+                            <div class="wp-icon wpi-4">🌸</div>
+                            <div class="wp-content">
+                                <h4>Friendly Environment</h4>
+                                <p>A calm, welcoming space designed so mothers feel reassured and children feel safe and
+                                    comfortable.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-visual reveal right">
+                    <div class="why-stat">
+                        <span class="ws-num">2,000+</span>
+                        <span class="ws-label">Families Helped</span>
+                    </div>
+                    <div class="why-stat">
+                        <span class="ws-num">4.9★</span>
+                        <span class="ws-label">Patient Rating</span>
+                    </div>
+                    <div class="why-stat">
+                        <span class="ws-num">8+</span>
+                        <span class="ws-label">Years Experience</span>
+                    </div>
+                    <div class="why-stat">
+                        <span class="ws-num">100%</span>
+                        <span class="ws-label">Compassionate Care</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════
+     PROFILE CARD
+════════════════════════ -->
+    <section class="profile-sec" id="profile">
+        <div class="wrap">
+            <div class="tag tag-pink reveal" style="margin-bottom:16px; display:flex; justify-content:center;">Doctor
+                Profile</div>
+            <h2 class="sec-title reveal" style="text-align:center;margin-bottom:48px">Meet <em>Dr. Rukayaa</em></h2>
+            <div class="profile-card reveal">
+                <div class="pc-left">
+                    <div class="pc-avatar">👩‍⚕️</div>
+                    <div class="pc-name">Dr. Rukayaa</div>
+                    <div class="pc-spec">Mother &amp; Child Specialist</div>
+                    <div class="pc-stars">★★★★★</div>
+                    <div class="pc-rating">4.9 · 520 patient reviews</div>
+                </div>
+                <div class="pc-right">
+                    <h3>Dr. Rukayaa</h3>
+                    <span class="tag tag-pink pc-tag">Mother &amp; Child Specialist</span>
+                    <div class="pc-avail">
+                        <div class="avail-dot"></div> Available for appointments today
+                    </div>
+                    <div class="pc-meta">
+                        <div class="pc-meta-row"><span class="pc-meta-ico">🎓</span> MBBS, FCPS (Obstetrics &amp;
+                            Gynaecology) &nbsp;<strong>· Verified</strong></div>
+                        <div class="pc-meta-row"><span class="pc-meta-ico">🏥</span> City Maternity &amp; Children's
+                            Clinic, Mymensingh</div>
+                        <div class="pc-meta-row"><span class="pc-meta-ico">⏱</span> 8+ Years Specialised Experience
+                            &nbsp;<strong>· Senior Consultant</strong></div>
+                        <div class="pc-meta-row"><span class="pc-meta-ico">💬</span> Speaks Bengali, English
+                            &nbsp;·&nbsp; Online Consult Available</div>
+                    </div>
+                    <div class="pc-actions">
+                        <a href="#cta" class="btn btn-pink">💗 Book Now</a>
+                        <a href="#cta" class="btn btn-outline">🎥 Video Consult</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════
+     TESTIMONIALS
+════════════════════════ -->
+    <section class="testi" id="testimonials">
+        <div class="wrap">
+            <div class="testi-header">
+                <div class="tag tag-pink reveal" style="margin-bottom:16px">Patient Stories</div>
+                <h2 class="sec-title reveal">Mothers Trust <em>Dr. Rukayaa</em></h2>
+                <p class="sec-sub reveal">Real stories from real families — because the greatest recommendation is a
+                    mother's peace of mind.</p>
+            </div>
+            <div class="testi-grid">
+                <div class="testi-card reveal d1">
+                    <span class="big-quote">"</span>
+                    <div class="testi-stars">★★★★★</div>
+                    <p class="testi-text">"During my entire pregnancy, Dr. Rukayaa made me feel safe and heard. She took
+                        time to explain everything, answered my worries with patience, and was there for every
+                        milestone. I couldn't have asked for a better doctor."</p>
+                    <div class="testi-name">
+                        <div class="testi-av">👩</div>
+                        <div><strong>Fatema Rahman</strong><span>Mother of 1 · Dhaka</span></div>
+                    </div>
+                </div>
+                <div class="testi-card testi-hi reveal d2">
+                    <span class="big-quote">"</span>
+                    <div class="testi-stars">★★★★★</div>
+                    <p class="testi-text">"My son had recurring health issues as a toddler. Dr. Rukayaa's thorough
+                        approach and warm personality turned every scary visit into something manageable. She genuinely
+                        cares — you can feel it."</p>
+                    <div class="testi-name">
+                        <div class="testi-av">👩</div>
+                        <div><strong>Nasrin Akter</strong><span>Mother of 2 · Mymensingh</span></div>
+                    </div>
+                </div>
+                <div class="testi-card reveal d3">
+                    <span class="big-quote">"</span>
+                    <div class="testi-stars">★★★★★</div>
+                    <p class="testi-text">"From newborn checkups to the toddler years, Dr. Rukayaa has been our family's
+                        pillar. Her advice is always clear, practical, and reassuring. She makes complex medical things
+                        feel simple and manageable."</p>
+                    <div class="testi-name">
+                        <div class="testi-av">👩</div>
+                        <div><strong>Sumaiya Khanam</strong><span>Mother of 3 · Chittagong</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════
+     CTA
+════════════════════════ -->
+    <section class="cta-sec" id="cta">
+        <div class="wrap cta-inner reveal">
+            <div class="cta-badge">💗 Start Your Journey</div>
+            <h2 class="cta-title">Give Your Child the<br /><em>Best Care</em> Today</h2>
+            <p class="cta-sub">Book a consultation with Dr. Rukayaa and give your family the compassionate, expert care
+                they deserve. Your first step toward peace of mind is one click away.</p>
+            <div class="cta-actions">
+                <a href="tel:+880000000000" class="btn btn-white">📞 Call Now</a>
+                <a href="mailto:hello@drRukayaa.com" class="btn btn-outline-white">✉️ Send Message</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════
+     FOOTER
+════════════════════════ -->
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="nav-logo" style="color:white">
+                            <div class="logo-dot"></div>
+                            Dr. Rukayaa
+                        </div>
+                    </div>
+                    <p>Mother &amp; Child Specialist dedicated to compassionate, modern care for every family's journey.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#">𝕏</a><a href="#">in</a><a href="#">◎</a><a href="#">ƒ</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <a href="#about">About</a>
+                        <a href="#services">Services</a>
+                        <a href="#profile">Profile</a>
+                        <a href="#testimonials">Reviews</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <a href="#">Pregnancy Care</a>
+                        <a href="#">Newborn Care</a>
+                        <a href="#">Child Checkups</a>
+                        <a href="#">Nutrition Guidance</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <div class="footer-contact">
+                            <div class="fc-row">📍 Mymensingh, Bangladesh</div>
+                            <div class="fc-row">📞 +8801577218105</div>
+                            <div class="fc-row">✉️ developer.junaead@gmail.com</div>
+                            <div class="fc-row">⏰ Sat–Thu, 9AM–6PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="footer-bottom">
-                <span>© 2025 Little Stars Pediatric Care. All rights reserved.</span>
-                <span>Privacy Policy · Terms of Use</span>
+                <span>© 2025 Dr. Rukayaa – All rights reserved.</span>
+                <span>Made with 💗 for mothers &amp; children everywhere</span>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to top -->
-    <button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
-
-    <!-- ============================================================
-       JAVASCRIPT
-       ============================================================ -->
     <script>
-        /* -----------------------------------------------------------
-           Navbar glass on scroll
-        ----------------------------------------------------------- */
-        const navbar = document.getElementById('navbar');
+        // ── LOADER ────────────────────────────
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('gone');
+                document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('vis'));
+            }, 1400);
+        });
+
+        // ── NAVBAR SCROLL ─────────────────────
         window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
+            document.getElementById('nav').classList.toggle('scr', window.scrollY > 50);
+        }, { passive: true });
 
-        /* -----------------------------------------------------------
-           Scroll-to-top
-        ----------------------------------------------------------- */
-        const scrollTopBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            scrollTopBtn.classList.toggle('show', window.scrollY > 400);
-        });
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        /* -----------------------------------------------------------
-           Reveal on scroll (IntersectionObserver)
-        ----------------------------------------------------------- */
-        const revealEls = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        revealEls.forEach(el => observer.observe(el));
-
-        /* -----------------------------------------------------------
-           Mobile hamburger — rebuilt with proper toggle and close-on-link-click
-        ----------------------------------------------------------- */
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobileNav');
-
-        hamburger.addEventListener('click', () => {
-            const isOpen = mobileNav.classList.toggle('open');
-            hamburger.setAttribute('aria-expanded', isOpen);
-        });
-
-        /* Close mobile menu when a link is clicked */
-        mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('open');
-                hamburger.setAttribute('aria-expanded', 'false');
-            });
-        });
-
-        /* Close mobile menu on outside click */
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
-                mobileNav.classList.remove('open');
-                hamburger.setAttribute('aria-expanded', 'false');
+        // ── MOBILE MENU ───────────────────────
+        const burger = document.getElementById('burger');
+        const mobMenu = document.getElementById('mobMenu');
+        let open = false;
+        burger.addEventListener('click', () => {
+            open = !open;
+            mobMenu.classList.toggle('open', open);
+            const s = burger.querySelectorAll('span');
+            if (open) {
+                s[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+                s[1].style.opacity = '0';
+                s[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+            } else {
+                s.forEach(x => { x.style.transform = ''; x.style.opacity = ''; });
             }
         });
-    </script>
+        mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            open = false;
+            mobMenu.classList.remove('open');
+            burger.querySelectorAll('span').forEach(x => { x.style.transform = ''; x.style.opacity = ''; });
+        }));
 
+        // ── SCROLL REVEAL ─────────────────────
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // ── SMOOTH SCROLL ─────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const t = document.querySelector(a.getAttribute('href'));
+                if (!t) return;
+                e.preventDefault();
+                window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+            });
+        });
+
+        // ── RIPPLE ON BUTTONS ─────────────────
+        document.querySelectorAll('.btn,.nav-cta,.mob-cta').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                const r = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                r.style.cssText = `
+      position:absolute;width:${size}px;height:${size}px;
+      top:${e.clientY - rect.top - size / 2}px;left:${e.clientX - rect.left - size / 2}px;
+      background:rgba(255,255,255,.35);border-radius:50%;
+      transform:scale(0);animation:ripple .55s ease-out forwards;pointer-events:none;
+    `;
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(r);
+                setTimeout(() => r.remove(), 600);
+            });
+        });
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = '@keyframes ripple{to{transform:scale(2.5);opacity:0}}';
+        document.head.appendChild(rippleStyle);
+    </script>
 </body>
 
 </html>
